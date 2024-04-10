@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function StarWarsCharacter() {
-  const [starWarsCharacter, setStarWarsCharacter] = useState(null);
+  const [starWarsCharacter, setStarWarsCharacter] = useState({}); 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -11,15 +11,14 @@ export default function StarWarsCharacter() {
       try {
         const response = await axios.get('https://swapi.dev/api/people/1');
         setStarWarsCharacter(response.data);
-        setError(''); 
       } catch (error) {
-        setError('Something went wrong');
-        console.log(error);
+        setError('Something went wrong. Please try again later.'); 
+        console.error(error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); 
       }
     }
-    getData();
+    getData(); 
   }, []); 
 
   return (
